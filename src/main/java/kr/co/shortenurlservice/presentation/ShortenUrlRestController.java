@@ -8,11 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
+@Slf4j
 public class ShortenUrlRestController {
 
     private SimpleShortenUrlService simpleShortenUrlService;
@@ -26,6 +29,7 @@ public class ShortenUrlRestController {
     public ResponseEntity<ShortenUrlCreateResponseDto> createShortenUrl(
             @Valid @RequestBody ShortenUrlCreateRequestDto shortenUrlCreateRequestDto
     ) {
+        log.info("createShortenUrl {}",shortenUrlCreateRequestDto.getOriginalUrl());
         ShortenUrlCreateResponseDto shortenUrlCreateResponseDto =
                 simpleShortenUrlService.generateShortenUrl(shortenUrlCreateRequestDto);
         return ResponseEntity.ok(shortenUrlCreateResponseDto);
