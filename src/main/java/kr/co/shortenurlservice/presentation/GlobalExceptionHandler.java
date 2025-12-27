@@ -25,6 +25,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleNotFoundShortenUrlException(
             NotFoundShortenUrlException ex
     ) {
+        //초당 100개이상 발견할경우, WARN로 변경을 해서 원인을 파악해보는것도 좋다.
         log.info(ex.getMessage());
         return new ResponseEntity<>("단축 URL을 찾지 못했습니다.", HttpStatus.NOT_FOUND);
     }
