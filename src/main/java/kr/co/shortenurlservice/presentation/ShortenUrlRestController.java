@@ -28,10 +28,6 @@ public class ShortenUrlRestController {
     public ResponseEntity<ShortenUrlCreateResponseDto> createShortenUrl(
             @Valid @RequestBody ShortenUrlCreateRequestDto shortenUrlCreateRequestDto
     ) {
-        /**
-         * 양이 클 수 있기 때문에, 한번에 받아야한다.
-         */
-        log.trace("shortenUrlCreateRequestDto: {}", shortenUrlCreateRequestDto);
         ShortenUrlCreateResponseDto shortenUrlCreateResponseDto =
                 simpleShortenUrlService.generateShortenUrl(shortenUrlCreateRequestDto);
         return ResponseEntity.ok(shortenUrlCreateResponseDto);
